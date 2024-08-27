@@ -1,6 +1,7 @@
 package br.emkreimer.dooshop.domain.model;
 
 import br.emkreimer.dooshop.domain.enums.Categoria;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -15,21 +16,19 @@ public class Produto {
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SEQ_PRODUTO")
     @SequenceGenerator(name="SEQ_PRODUTO", sequenceName="id_seq_produto", allocationSize=1)
-    @Column(name="id")
     private Integer id;
 
-    @Column(name="nome", nullable = false)
+    @Column(nullable = false)
     private String nome;
 
-    @Column(name="preco")
     private BigDecimal valor;
 
     private Categoria categoria;
 
-    @Column(name="estoque")
     private Integer estoque = 0;
 
-    @ManyToMany(mappedBy="produtos")
+    @ManyToMany(mappedBy="produtos", fetch=FetchType.LAZY)
+    @JsonIgnore
     private List<Empresa> fornecedores;
 
 

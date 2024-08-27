@@ -1,8 +1,10 @@
 package br.emkreimer.dooshop.service;
 
 import br.emkreimer.dooshop.domain.model.Empresa;
+import br.emkreimer.dooshop.domain.model.Produto;
 import br.emkreimer.dooshop.repository.EmpresaRepository;
 import br.emkreimer.dooshop.repository.ProdutoRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,21 +22,28 @@ public class EmpresaService {
 
     List<Empresa> fornecedores = new ArrayList<>();
 
+    @Transactional
     public Empresa cadastrar(Empresa empresa) {
 
         validarEmpresa(empresa);
 
-        Empresa novaEmpresa = new Empresa();
-        novaEmpresa.setNome(empresa.getNome());
-        novaEmpresa.setProdutos(empresa.getProdutos());
-
-        if(!novaEmpresa.getProdutos().isEmpty()) {
-            fornecedores.add(novaEmpresa);
-            novaEmpresa.getProdutos().forEach(p -> p.setFornecedores(fornecedores));
-            produtoRepository.saveAll(novaEmpresa.getProdutos());
+        for (Produto produto : empresa.getProdutos()) {
+            produto.getFornecedores().add(empresa);
         }
-        empresaRepository.save(novaEmpresa);
-        return novaEmpresa;
+        fornecedores.add(empresa);
+        empresa.getProdutos().forEach(p -> p.setFornecedores(fornecedores));
+
+        Empresa nova = empresaRepository.save(empresa);
+        produtoRepository.saveAll(empresa.getProdutos());
+        return nova;
+    }
+
+    @Transactional
+    public Iterable<Empresa> updateProdutosEmpresa(Produto produto) {
+        for(Empresa e : produto.getFornecedores()) {
+            e.getProdutos().add(produto);
+        }
+        return empresaRepository.saveAll(produto.getFornecedores());
     }
 
     public void validarEmpresa(Empresa empresa) {

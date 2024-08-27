@@ -1,14 +1,19 @@
 package br.emkreimer.dooshop.domain.enums;
 
+import lombok.Getter;
+
+@Getter
 public enum Categoria {
 
-    FRUTAS("fruta"),
-    CEREAIS("cereais"),
-    LEGUMES("legume");
+    FRUTAS(1, "fruta"),
+    CEREAIS(2, "cereais"),
+    LEGUMES(3, "legume");
 
-    private String categoria;
+    private final int id;
+    private final String categoria;
 
-    Categoria(String categoria) {
+    Categoria(int id, String categoria) {
+        this.id = id;
         this.categoria = categoria;
     }
 
