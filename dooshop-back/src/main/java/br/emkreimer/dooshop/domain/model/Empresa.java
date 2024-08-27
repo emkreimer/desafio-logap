@@ -13,14 +13,14 @@ import java.util.List;
 public class Empresa {
 
     @Id
-    @GeneratedValue
-    @Column(name="id")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SEQ_EMPRESA")
+    @SequenceGenerator(name="SEQ_EMPRESA", sequenceName="id_seq_empresa", allocationSize=1)
     private Integer id;
 
-    @Column(name="nome", nullable = false)
+    @Column(unique=true, nullable=false)
     private String nome;
 
     @ManyToMany(fetch=FetchType.LAZY)
     @JoinTable(name="empresas_produtos", schema="public", joinColumns=@JoinColumn(name="id_empresa"), inverseJoinColumns = @JoinColumn(name="id_produto"))
-    private List<Empresa> fornecedores = new ArrayList<>();
+    private List<Produto> produtos = new ArrayList<>();
 }
