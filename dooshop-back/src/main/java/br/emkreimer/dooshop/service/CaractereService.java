@@ -1,6 +1,6 @@
 package br.emkreimer.dooshop.service;
 
-import br.emkreimer.dooshop.model.CharResponse;
+import br.emkreimer.dooshop.domain.model.CharResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;

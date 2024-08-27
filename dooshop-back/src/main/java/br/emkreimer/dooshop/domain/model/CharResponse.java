@@ -1,4 +1,4 @@
-package br.emkreimer.dooshop.model;
+package br.emkreimer.dooshop.domain.model;
 
 import lombok.Data;
 
