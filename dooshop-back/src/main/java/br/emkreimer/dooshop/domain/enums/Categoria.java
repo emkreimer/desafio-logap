@@ -9,6 +9,7 @@ public enum Categoria {
     CEREAIS(2, "cereais"),
     LEGUMES(3, "legume");
 
+    @Getter
     private final int id;
     private final String categoria;
 
@@ -17,7 +18,14 @@ public enum Categoria {
         this.categoria = categoria;
     }
 
-    public String getCategoria() {
-        return categoria;
+    public static Categoria fromId(int id) {
+        for (Categoria categoria : values()) {
+            if (categoria.getId() == id) {
+                return categoria;
+            }
+        }
+        return null;
     }
+    public Categoria[] getAllCategorias() { return Categoria.values(); }
+
 }

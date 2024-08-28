@@ -13,4 +13,10 @@ public interface ProdutoRepository  extends CrudRepository<Produto, Integer> {
     @Override
     @Query("FROM Produto ORDER BY nome")
     public List<Produto> findAll();
+
+    @Query("FROM Produto WHERE estoque = 0")
+    public List<Produto> getProdutosFaltantes();
+
+    @Query(value = "SELECT p.categoria AS c, COUNT(p) AS count FROM Produto p GROUP BY c")
+    public List<Object[]> countProductsByCategoria();
 }

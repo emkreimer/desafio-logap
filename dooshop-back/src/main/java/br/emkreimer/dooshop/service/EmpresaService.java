@@ -51,4 +51,8 @@ public class EmpresaService {
             throw new IllegalArgumentException("O nome da empresa deve ser preenchido!");
         }
     }
+
+    public List<Empresa> getFornecedoresSemEstoque() {
+        return empresaRepository.getAllSemEstoque();
+    }
 }
