@@ -1,8 +1,10 @@
 <template>
-  <nav class="d-flex w-100 navbar rounded">
-    <div class="container">
-      <a href="/" class="navbar-brand">Doo App</a>
-      <ul class="navbar-nav">
+  <nav class="w-100 navbar rounded">
+    <div class="container my-3">
+      <a href="/" class="navbar-brand">
+        <span class="text-bold">Doo App</span>
+      </a>
+      <ul class="navbar-nav mt-4">
         <li class="nav-item">
           <router-link to="/produtos" class="nav-link">Nossos produtos</router-link>
         </li>

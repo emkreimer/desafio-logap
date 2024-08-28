@@ -1,23 +1,24 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
 import Navbar from './components/Navbar.vue'
-import ProductTable from './components/products/ProductTable.vue'
 </script>
 
 <template>
-  <VContainer fluid>
-    <Navbar />
-    <RouterView />
-  </VContainer>
+  <v-app>
+    <v-main>
+      <Navbar />
+      <RouterView />
+    </v-main>
+  </v-app>
 </template>
 
 <style>
 html,
 body,
 #app {
-  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
-  margin: 0;
 }
 </style>

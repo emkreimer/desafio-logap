@@ -7,13 +7,17 @@ defineProps<{ produto: Produto }>()
 </script>
 
 <template>
-  <VBtn variant="outlined" @click="dialog = true">
-    <VIcon>mdi-delete</VIcon>
-  </VBtn>
+  <VBtn color="red" size="small" @click="dialog = true" rounded="lg">Del</VBtn>
 
   <VDialog v-model="dialog" width="auto">
     <VCard>
-      <VCardTitle>Tem certeza de que deseja DELETAR {{ produto.nome }}?</VCardTitle>
+      <VCardTitle class="my-3">Tem certeza de que deseja deletar {{ produto.nome }}?</VCardTitle>
+      <VCardText>
+        <div class="d-flex justify-end">
+          <VBtn variant="outlined" color="warning" @click="dialog = false">Cancelar</VBtn>
+          <VBtn color="red" class="ml-3">Deletar</VBtn>
+        </div>
+      </VCardText>
     </VCard>
   </VDialog>
 </template>

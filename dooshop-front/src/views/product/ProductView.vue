@@ -11,7 +11,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <VContainer>
+  <VContainer class="d-flex justify-center">
     <ProductTable :produtos="allProdutos" />
   </VContainer>
 </template>
