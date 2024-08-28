@@ -24,7 +24,7 @@ defineProps<{ produtos: Produto[] }>()
           <td>{{ p.estoque }}</td>
           <td>{{ p.categoria.charAt(0) + p.categoria.substring(1).toLowerCase() }}</td>
           <td>
-            <AddProduct :produto="p" />
+            <AddProduct :produto="p" :edicao="true" />
             <DeleteProduct :produto="p" />
           </td>
         </tr>

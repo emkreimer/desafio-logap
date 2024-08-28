@@ -1,6 +1,7 @@
 package br.emkreimer.dooshop.domain.model;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -22,5 +23,6 @@ public class Empresa {
 
     @ManyToMany(fetch=FetchType.LAZY)
     @JoinTable(name="empresas_produtos", schema="public", joinColumns=@JoinColumn(name="id_empresa"), inverseJoinColumns = @JoinColumn(name="id_produto"))
+    @JsonManagedReference
     private List<Produto> produtos = new ArrayList<>();
 }
