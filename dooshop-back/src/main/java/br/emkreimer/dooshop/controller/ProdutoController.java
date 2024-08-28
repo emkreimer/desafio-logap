@@ -30,11 +30,11 @@ public class ProdutoController {
 
     @GetMapping("/produtos-faltantes")
     public List<Produto> getProdutosFaltantes() {
-        return null;
+        return produtoService.getProdutosFaltantes();
     }
 
     @GetMapping("/categorias")
-    public List<Map<Categoria, Long>> getCountByCategoria() {
+    public List<Object[]> getCountByCategoria() {
         return produtoService.getCategoriaWithCounts();
     }
 

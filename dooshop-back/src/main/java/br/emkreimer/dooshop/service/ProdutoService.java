@@ -38,19 +38,8 @@ public class ProdutoService {
 
     public List<Produto> getProdutosFaltantes() { return produtoRepository.getProdutosFaltantes(); }
 
-    public List<Map<Categoria, Long>> getCategoriaWithCounts() {
-        List<Object[]> counts = produtoRepository.countProductsByCategoria();
-        List<Map<Categoria, Long>> categorias = new ArrayList<>();
-
-        for(Object[] c : counts) {
-            int categoriaId = (Integer) c[0];
-            long count = ((Number) c[1]).longValue();
-            Categoria categoria = Categoria.fromId(categoriaId);
-            Map<Categoria, Long> map = new HashMap<>();
-            map.put(categoria, count);
-            categorias.add(map);
-        }
-        return categorias;
+    public List<Object[]> getCategoriaWithCounts() {
+        return produtoRepository.countProductsByCategoria();
     }
 
     public String deleteProdutoById(Integer id) {
