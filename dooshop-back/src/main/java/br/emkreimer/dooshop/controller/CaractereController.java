@@ -13,7 +13,7 @@ public class CaractereController {
     CaractereService charService;
 
     @PostMapping()
-    public CharResponse processString(@RequestBody String word) {
+    public CharResponse processString(@RequestParam String word) {
         return charService.getResults(word);
 
 

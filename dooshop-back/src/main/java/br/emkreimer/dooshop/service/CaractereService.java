@@ -3,6 +3,8 @@ package br.emkreimer.dooshop.service;
 import br.emkreimer.dooshop.domain.model.CharResponse;
 import org.springframework.stereotype.Service;
 
+import java.time.Duration;
+import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,10 +12,17 @@ import java.util.Set;
 public class CaractereService {
 
     public CharResponse getResults(String word) {
-        long startTime = System.currentTimeMillis();
+        CharResponse response = new CharResponse();
+        response.setString(word);
+
+        Instant start = Instant.now();
         Character vowel = findPatternVowel(word);
-        long endTime = System.currentTimeMillis();
-        return new CharResponse(word, vowel, endTime-startTime);
+        Instant end = Instant.now();
+
+        response.setVogal(vowel);
+        response.setTempoTotal(Duration.between(start, end).toMillis());
+
+        return response;
     }
 
     public Character findPatternVowel(String word) {
@@ -28,12 +37,18 @@ public class CaractereService {
             if(vowels.indexOf(c) < 0) {
                 consonant = true;
             } else {
-                if(consonant && !vowelSet.contains(c)) {
-                    vowelSet.add(c);
-                    if (i > 0 && vowels.indexOf(word.charAt(i - 1)) != -1) {
+                // if the vowel is unique
+                if(!vowelSet.contains(c)) {
+                    // if it is preceded by 2 letters
+                    // and i-1 is a consonant
+                    // and i-2 is a vowel
+                    if (i > 2 && consonant && vowelSet.contains(word.charAt(i-2))) {
                         return c;
                     }
+                    vowelSet.add(c);
+                    consonant = false;
                 }
+
             }
         }
         return '\0';
