@@ -8,6 +8,6 @@ import ProductTable from './components/products/ProductTable.vue'
 <template>
   <VContainer>
     <Navbar />
-    <ProductTable />
+    <RouterView />
   </VContainer>
 </template>

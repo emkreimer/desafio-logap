@@ -4,17 +4,11 @@
       <a href="/" class="navbar-brand">Doo App</a>
       <ul class="navbar-nav">
         <li class="nav-item">
-          <router-link to="/" class="nav-link">Home</router-link>
-        </li>
-        <!-- <li class="nav-item">
-          <router-link to="/products" class="nav-link">Products</router-link>
+          <router-link to="/produtos" class="nav-link">Nossos produtos</router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/about" class="nav-link">About</router-link>
+          <router-link to="/fornecedores" class="nav-link">Nossos fornecedores</router-link>
         </li>
-        <li class="nav-item">
-          <router-link to="/contact" class="nav-link">Contact</router-link>
-        </li> -->
       </ul>
     </div>
   </nav>
