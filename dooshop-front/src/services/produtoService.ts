@@ -1,7 +1,8 @@
 import { getAllProdutos } from "@/api/produto";
 
 const getProdutos = async () => {
-    return getAllProdutos();
+    const produtos = await getAllProdutos()
+    return produtos.data ?? [];
 }
 
 export {getProdutos}
