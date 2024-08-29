@@ -19,4 +19,7 @@ public interface ProdutoRepository  extends CrudRepository<Produto, Integer> {
 
     @Query(value = "SELECT p.categoria AS c, COUNT(p) AS count FROM Produto p GROUP BY c")
     public List<Object[]> countProductsByCategoria();
+
+    @Query("SELECT p.categoria AS c, SUM(p.estoque) FROM Produto p GROUP BY c")
+    public List<Object[]> getEstoqueGroupedByCategoria();
 }

@@ -25,7 +25,6 @@ public class EmpresaController {
     @GetMapping()
     public List<Empresa> getEmpresas() {
         return empresaService.getAllFornecedores();
-
     }
 
     @GetMapping("/sem-estoque")

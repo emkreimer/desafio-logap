@@ -7,6 +7,7 @@ import br.emkreimer.dooshop.service.RelatorioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -48,18 +49,17 @@ public class ProdutoController {
         return new ResponseEntity<>(produtoService.deleteProdutoById(id), HttpStatus.OK);
     }
 
-    ///////////////// Relatório ////////////
+    ///////////////// Relatório ////////////////////////
     @GetMapping("/relatorio")
     public ResponseEntity<byte[]> gerarRelatorio() {
-        List<Produto> produtos = produtoService.getAllProdutos();
-        ByteArrayOutputStream pdfStream = relatorioService.createPdf(produtos);
+        ByteArrayOutputStream pdfStream = relatorioService.createPdf();
+
+        byte[] pdfBytes = pdfStream.toByteArray();
 
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Disposition", "inline; filename=relatorio_produtos.pdf");
+        headers.setContentType(MediaType.APPLICATION_PDF);
+        headers.setContentDispositionFormData("attachment", "produto_report.pdf");
 
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .headers(headers)
-                .body(pdfStream.toByteArray());
+        return new ResponseEntity<>(pdfBytes, headers, HttpStatus.OK);
     }
 }

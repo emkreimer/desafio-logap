@@ -1,9 +1,7 @@
 package br.emkreimer.dooshop.service;
 
-import br.emkreimer.dooshop.domain.enums.Categoria;
 import br.emkreimer.dooshop.domain.model.Empresa;
 import br.emkreimer.dooshop.domain.model.Produto;
-import br.emkreimer.dooshop.repository.EmpresaRepository;
 import br.emkreimer.dooshop.repository.ProdutoRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +16,7 @@ public class ProdutoService {
     ProdutoRepository produtoRepository;
 
     @Autowired
-    EmpresaRepository empresaRepository;
-
-    @Autowired
     EmpresaService empresaService;
-
-    List<Produto> novosProdutos = new ArrayList<>();
 
     @Transactional
     public Produto cadastrar(Produto produto) {
@@ -46,6 +39,10 @@ public class ProdutoService {
         return produtoRepository.countProductsByCategoria();
     }
 
+    public List<Object[]> getEstoqueByCategoria() {
+        return produtoRepository.getEstoqueGroupedByCategoria();
+    }
+
     public String deleteProdutoById(Integer id) {
         Optional<Produto> produto = produtoRepository.findById(id);
         if (produto.isPresent()) {
@@ -53,11 +50,6 @@ public class ProdutoService {
             return "Produto deletado com sucesso!";
         }
         return "Produto não encontrado.";
-    }
-
-    public List<Produto> getProdutosByCategoria(Categoria categoria) {
-        return null;
-
     }
 
     private Produto validarProduto(Produto produto) {
