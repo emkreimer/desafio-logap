@@ -1,19 +1,18 @@
+<script setup lang="ts"></script>
 <template>
-  <nav class="w-100 navbar rounded">
-    <div class="container my-3">
-      <a href="/" class="navbar-brand">
-        <span class="text-bold">Doo App</span>
-      </a>
-      <ul class="navbar-nav mt-4">
-        <li class="nav-item">
-          <router-link to="/produtos" class="nav-link">Nossos produtos</router-link>
-        </li>
-        <li class="nav-item">
-          <router-link to="/fornecedores" class="nav-link">Nossos fornecedores</router-link>
-        </li>
-      </ul>
+  <VCard color="purple-darken-4" class="pt-4 px-3">
+    <VToolbar color="purple-darken-4" class="d-flex">
+      <v-toolbar-title class="text-h4">Doo Shop</v-toolbar-title>
+      <VSpacer />
+    </VToolbar>
+    <div>
+      <VTabs>
+        <VTab to="/">Qual a vogal</VTab>
+        <VTab to="/produtos">Nossos produtos</VTab>
+        <VTab to="/fornecedores">Nossos fornecedores</VTab>
+      </VTabs>
     </div>
-  </nav>
+  </VCard>
 </template>
 
 <style scoped>
