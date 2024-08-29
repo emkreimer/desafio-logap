@@ -52,6 +52,10 @@ public class EmpresaService {
         }
     }
 
+    public List<Empresa> getAllFornecedores() {
+        return empresaRepository.findAll();
+    }
+
     public List<Empresa> getFornecedoresSemEstoque() {
         return empresaRepository.getAllSemEstoque();
     }

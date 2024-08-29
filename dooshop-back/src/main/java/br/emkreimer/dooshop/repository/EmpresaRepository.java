@@ -10,6 +10,9 @@ import java.util.List;
 @Repository
 public interface EmpresaRepository extends CrudRepository<Empresa, Integer> {
 
+    @Query("SELECT e FROM Empresa e")
+    public List<Empresa> findAll();
+
     @Query("SELECT e FROM Empresa e JOIN e.produtos p WHERE p.estoque = 0")
     public List<Empresa> getAllSemEstoque();
 }

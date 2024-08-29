@@ -15,4 +15,9 @@ const deletar = async (id: number) => {
     return await axios.delete(`http://localhost:8085?id=${id}`)
 }
 
-export { getAllProdutos, salvar, deletar }
+const gerarRelatorio = async () => {
+    return await axios.get("http://localhost:8085/relatorio", { responseType: 'blob' })
+}
+
+
+export { getAllProdutos, salvar, deletar, gerarRelatorio }

@@ -1,4 +1,4 @@
-import { getAllProdutos, salvar, deletar } from "@/api/produto";
+import { getAllProdutos, salvar, deletar, gerarRelatorio } from "@/api/produto";
 import { Categoria } from "@/enums/Categoria";
 import { ref} from 'vue'
 import type { Produto } from "@/models/Produto";
@@ -29,10 +29,22 @@ const deletarProduto = async (id: number) => {
     
 }
 
+const imprimirRelatorio = async () => {
+    const relatorio = await gerarRelatorio()
+
+    const url = window.URL.createObjectURL(new Blob([relatorio.data]))
+    const link = document.createElement('a')
+    link.href = url
+    link.setAttribute('download', 'relatorio.pdf')
+    document.body.appendChild(link)
+    link.click()
+    link.remove()
+}
+
 const categoriaOptions = Object.keys(Categoria).map(key => ({
     text: key,
   }));
 
 
 
-export {getProdutos, categoriaOptions, novoProduto, salvarProduto, allProdutos, deletarProduto }
+export {getProdutos, categoriaOptions, novoProduto, salvarProduto, allProdutos, deletarProduto, imprimirRelatorio }

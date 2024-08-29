@@ -15,7 +15,7 @@ const showAnswer = async () => {
   <VContainer class="mt-10">
     <VCol>
       <VRow class="d-flex justify-center align-center">
-        <VCard variant="outlined" class="px-5">
+        <VCard class="px-5">
           <VCardTitle class="my-5">Qual é a vogal?</VCardTitle>
           <VCardText>
             As regras:

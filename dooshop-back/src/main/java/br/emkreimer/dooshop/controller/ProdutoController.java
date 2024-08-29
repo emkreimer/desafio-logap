@@ -3,11 +3,14 @@ package br.emkreimer.dooshop.controller;
 import br.emkreimer.dooshop.domain.enums.Categoria;
 import br.emkreimer.dooshop.domain.model.Produto;
 import br.emkreimer.dooshop.service.ProdutoService;
+import br.emkreimer.dooshop.service.RelatorioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.ByteArrayOutputStream;
 import java.util.List;
 import java.util.Map;
 
@@ -16,6 +19,8 @@ import java.util.Map;
 public class ProdutoController {
 
     @Autowired ProdutoService produtoService;
+
+    @Autowired RelatorioService relatorioService;
 
     @PostMapping()
     //mudar para produtoDTO
@@ -41,5 +46,20 @@ public class ProdutoController {
     @DeleteMapping()
     public ResponseEntity<String> deleteProduto(@RequestParam Integer id) {
         return new ResponseEntity<>(produtoService.deleteProdutoById(id), HttpStatus.OK);
+    }
+
+    ///////////////// Relatório ////////////
+    @GetMapping("/relatorio")
+    public ResponseEntity<byte[]> gerarRelatorio() {
+        List<Produto> produtos = produtoService.getAllProdutos();
+        ByteArrayOutputStream pdfStream = relatorioService.createPdf(produtos);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Disposition", "inline; filename=relatorio_produtos.pdf");
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .headers(headers)
+                .body(pdfStream.toByteArray());
     }
 }

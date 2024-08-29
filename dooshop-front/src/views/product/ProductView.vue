@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { onMounted } from 'vue'
 import ProductTable from '../../components/products/ProductTable.vue'
-import Produto from '../../models/Produto'
 import { getProdutos, allProdutos } from '../../services/produtoService'
 import ProductHeader from '@/components/products/ProductHeader.vue'
 
