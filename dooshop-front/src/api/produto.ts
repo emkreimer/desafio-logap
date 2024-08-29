@@ -11,4 +11,8 @@ const salvar = async (produto: Produto) => {
     return await axios.post("http://localhost:8085", produto)
 }
 
-export { getAllProdutos, salvar }
+const deletar = async (id: number) => {
+    return await axios.delete(`http://localhost:8085?id=${id}`)
+}
+
+export { getAllProdutos, salvar, deletar }

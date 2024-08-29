@@ -1,4 +1,4 @@
-import { getAllProdutos, salvar } from "@/api/produto";
+import { getAllProdutos, salvar, deletar } from "@/api/produto";
 import { Categoria } from "@/enums/Categoria";
 import { ref} from 'vue'
 import type { Produto } from "@/models/Produto";
@@ -22,10 +22,17 @@ const salvarProduto = async (produto: Produto, categoria: any) => {
 
 }
 
+const deletarProduto = async (id: number) => {
+    const res = await deletar(id)
+    allProdutos.value = await getProdutos()
+    return res.data
+    
+}
+
 const categoriaOptions = Object.keys(Categoria).map(key => ({
     text: key,
   }));
 
 
 
-export {getProdutos, categoriaOptions, novoProduto, salvarProduto, allProdutos }
+export {getProdutos, categoriaOptions, novoProduto, salvarProduto, allProdutos, deletarProduto }

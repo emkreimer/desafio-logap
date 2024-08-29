@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
+import { deletarProduto } from '@/services/produtoService'
 import Produto from '../../models/Produto'
 
 const dialog = ref(false)
@@ -15,7 +16,9 @@ defineProps<{ produto: Produto }>()
       <VCardText>
         <div class="d-flex justify-end">
           <VBtn variant="outlined" color="warning" @click="dialog = false">Cancelar</VBtn>
-          <VBtn color="red" class="ml-3">Deletar</VBtn>
+          <VBtn color="red" class="ml-3" @click="deletarProduto(produto.id), (dialog = false)"
+            >Deletar</VBtn
+          >
         </div>
       </VCardText>
     </VCard>
