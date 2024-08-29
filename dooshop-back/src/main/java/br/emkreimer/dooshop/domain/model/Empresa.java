@@ -23,6 +23,5 @@ public class Empresa {
 
     @ManyToMany(fetch=FetchType.LAZY)
     @JoinTable(name="empresas_produtos", schema="public", joinColumns=@JoinColumn(name="id_empresa"), inverseJoinColumns = @JoinColumn(name="id_produto"))
-    @JsonManagedReference
     private List<Produto> produtos = new ArrayList<>();
 }

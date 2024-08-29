@@ -7,7 +7,7 @@ defineProps<{ produto: Produto }>()
 </script>
 
 <template>
-  <VBtn color="red" size="small" @click="dialog = true" rounded="lg">Del</VBtn>
+  <VBtn variant="outlined" color="red" size="small" @click="dialog = true" rounded="lg">-</VBtn>
 
   <VDialog v-model="dialog" width="auto">
     <VCard>

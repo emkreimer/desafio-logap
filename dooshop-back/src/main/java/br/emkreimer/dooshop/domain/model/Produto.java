@@ -1,8 +1,7 @@
 package br.emkreimer.dooshop.domain.model;
 
 import br.emkreimer.dooshop.domain.enums.Categoria;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -29,7 +28,7 @@ public class Produto {
     private Integer estoque = 0;
 
     @ManyToMany(mappedBy="produtos", fetch=FetchType.LAZY)
-    @JsonBackReference
+    @JsonIgnore
     private List<Empresa> fornecedores;
 
 }

@@ -2,10 +2,9 @@
 import { ref, onMounted } from 'vue'
 import ProductTable from '../../components/products/ProductTable.vue'
 import Produto from '../../models/Produto'
-import { getProdutos } from '../../services/produtoService'
+import { getProdutos, allProdutos } from '../../services/produtoService'
 import ProductHeader from '@/components/products/ProductHeader.vue'
 
-const allProdutos = ref<Produto[]>([])
 onMounted(async () => {
   allProdutos.value = await getProdutos()
 })

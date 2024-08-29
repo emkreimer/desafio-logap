@@ -1,5 +1,5 @@
 export enum Categoria {
-    FRUTAS,
-    CEREAIS,
-    LEGUMES
+    FRUTAS = "Frutas",
+    CEREAIS = "Cereais",
+    LEGUMES = "Legumes"
 }

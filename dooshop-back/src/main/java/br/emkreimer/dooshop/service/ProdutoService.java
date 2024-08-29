@@ -1,6 +1,7 @@
 package br.emkreimer.dooshop.service;
 
 import br.emkreimer.dooshop.domain.enums.Categoria;
+import br.emkreimer.dooshop.domain.model.Empresa;
 import br.emkreimer.dooshop.domain.model.Produto;
 import br.emkreimer.dooshop.repository.EmpresaRepository;
 import br.emkreimer.dooshop.repository.ProdutoRepository;
@@ -26,9 +27,12 @@ public class ProdutoService {
 
     @Transactional
     public Produto cadastrar(Produto produto) {
-        //validar
-        Produto novo = produtoRepository.save(produto);
-        empresaService.updateProdutosEmpresa(produto);
+        Produto novo = validarProduto(produto);
+
+        produtoRepository.save(novo);
+        if (!novo.getFornecedores().isEmpty()) {
+            empresaService.updateProdutosEmpresa(produto);
+        }
         return novo;
     }
 
@@ -54,5 +58,16 @@ public class ProdutoService {
     public List<Produto> getProdutosByCategoria(Categoria categoria) {
         return null;
 
+    }
+
+    private Produto validarProduto(Produto produto) {
+        if(produto.getId() != null) {
+            List<Empresa> fornecedores = produtoRepository.findById(produto.getId()).get().getFornecedores();
+            produto.setFornecedores(fornecedores);
+        } else {
+            produto.setFornecedores(new ArrayList<>());
+        }
+
+        return produto;
     }
 }

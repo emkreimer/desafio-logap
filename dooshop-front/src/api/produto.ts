@@ -7,4 +7,8 @@ const getAllProdutos = async () => {
     return await axios.get("http://localhost:8085/")
 }
 
-export { getAllProdutos }
+const salvar = async (produto: Produto) => {
+    return await axios.post("http://localhost:8085", produto)
+}
+
+export { getAllProdutos, salvar }
