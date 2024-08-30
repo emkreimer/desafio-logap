@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EmpresaService {
@@ -20,22 +21,19 @@ public class EmpresaService {
     @Autowired
     ProdutoRepository produtoRepository;
 
-    List<Empresa> fornecedores = new ArrayList<>();
-
     @Transactional
     public Empresa cadastrar(Empresa empresa) {
 
         validarEmpresa(empresa);
 
         for (Produto produto : empresa.getProdutos()) {
-            produto.getFornecedores().add(empresa);
+            Optional<Produto> p = produtoRepository.findById(produto.getId());
+            if (p.isPresent()) {
+                p.get().getFornecedores().add(empresa);
+                produtoRepository.save(p.get());
+            }
         }
-        fornecedores.add(empresa);
-        empresa.getProdutos().forEach(p -> p.setFornecedores(fornecedores));
-
-        Empresa nova = empresaRepository.save(empresa);
-        produtoRepository.saveAll(empresa.getProdutos());
-        return nova;
+        return empresaRepository.save(empresa);
     }
 
     @Transactional
