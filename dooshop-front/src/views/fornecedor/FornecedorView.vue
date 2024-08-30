@@ -1,13 +1,12 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { onMounted } from 'vue'
 import SupplierTable from '../../components/suppliers/SupplierTable.vue'
-import { fetchFornecedores } from '../../services/fornecedorService'
+import { fetchFornecedores, empresas } from '../../services/fornecedorService'
 import Header from '../../components/suppliers/Header.vue'
 import type { Empresa } from '../../models/Empresa'
 
-const empresas = ref<Empresa[]>([])
 onMounted(async () => {
-  empresas.value = await fetchFornecedores()
+  await fetchFornecedores()
 })
 </script>
 <template>
