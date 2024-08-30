@@ -1,8 +1,19 @@
 import { getFornecedores, getProdutoFornecedores, getEstoqueTotalFornecedor } from "@/api/fornecedor";
+import { ref } from 'vue'
+
+
+const estoqueTotal = ref<Record<number, number>>({})
 
 const fetchFornecedores = async () => {
-    const fornecedores = await getFornecedores()
-    return fornecedores.data ?? []
+    const res = await getFornecedores()
+    const fornecedores = res.data
+
+    for (const empresa of fornecedores.value) {
+        const stock = await getEstoqueTotalFornecedor(empresa.id);
+        estoqueTotal.value[empresa.id] = stock;
+    }   
+
+    return fornecedores
 }
 
 const fetchProdutosFornecedor = async (id: number) => {
@@ -10,9 +21,5 @@ const fetchProdutosFornecedor = async (id: number) => {
     return produtos.data ?? []
 }
 
-const sumEstoque = async (id: number) => {
-    const estoque = await getEstoqueTotalFornecedor(id)
-    return estoque.data ?? 0
-}
 
-export { fetchFornecedores, sumEstoque, fetchProdutosFornecedor }
+export { fetchFornecedores, estoqueTotal, fetchProdutosFornecedor }

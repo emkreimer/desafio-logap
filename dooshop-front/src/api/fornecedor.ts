@@ -12,7 +12,8 @@ const getProdutoFornecedores = async (id: number) => {
 }
 
 const getEstoqueTotalFornecedor = async (id: number) => {
-    return await axios.get(`${API}/fornecedores/estoque/${id}`)
+    const res = await axios.get(`${API}/fornecedores/estoque/${id}`)
+    return res.data ?? 0
 }
 
 export { getFornecedores, getProdutoFornecedores, getEstoqueTotalFornecedor }
