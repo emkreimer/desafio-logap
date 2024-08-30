@@ -49,7 +49,7 @@ public class ProdutoController {
         return new ResponseEntity<>(produtoService.deleteProdutoById(id), HttpStatus.OK);
     }
 
-    ///////////////// Relatório ////////////////////////
+    ///////////////////// Relatório ////////////////////////
     @GetMapping("/relatorio")
     public ResponseEntity<byte[]> gerarRelatorio() {
         ByteArrayOutputStream pdfStream = relatorioService.createPdf();
@@ -58,7 +58,7 @@ public class ProdutoController {
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_PDF);
-        headers.setContentDispositionFormData("attachment", "produto_report.pdf");
+        headers.setContentDispositionFormData("attachment", "relatorio.pdf");
 
         return new ResponseEntity<>(pdfBytes, headers, HttpStatus.OK);
     }

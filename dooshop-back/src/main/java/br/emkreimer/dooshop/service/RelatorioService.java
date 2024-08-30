@@ -59,10 +59,18 @@ public class RelatorioService {
             addRowsEmpresa(fornecedoresSemEstoque, empresas);
             addRowsCategoria(categoriaEstoque, categorias);
 
+            document.add(new Paragraph("Estoque por Categoria:", FontFactory.getFont(FontFactory.HELVETICA, 16)));
+            document.add(new Paragraph("\n"));
             document.add(categoriaEstoque);
             document.add(new Paragraph("\n\n\n\n\n"));
+
+            document.add(new Paragraph("Fornecedores sem estoque:", FontFactory.getFont(FontFactory.HELVETICA, 16)));
+            document.add(new Paragraph("\n"));
             document.add(fornecedoresSemEstoque);
             document.add(new Paragraph("\n\n\n\n\n"));
+
+            document.add(new Paragraph("Produtos em falta:", FontFactory.getFont(FontFactory.HELVETICA, 16)));
+            document.add(new Paragraph("\n"));
             document.add(produtosEmFalta);
         } catch (DocumentException e) {
             e.printStackTrace();
@@ -74,6 +82,7 @@ public class RelatorioService {
     }
 
     private void addTableHeader(PdfPTable table, String[] headers) {
+
         Font headerFont = new Font(Font.HELVETICA, 12, Font.BOLD);
         for (String header : headers) {
             PdfPCell headerCell = new PdfPCell(new Paragraph(header, headerFont));
