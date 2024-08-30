@@ -1,22 +1,22 @@
 import axios from "axios";
 import { Produto } from "@/models/Produto";
 
-const back_url = "http://localhost:8085/"
+const API = import.meta.env.VITE_BACKEND_URL
 
 const getAllProdutos = async () => {
-    return await axios.get("http://localhost:8085/")
+    return await axios.get(`${API}`)
 }
 
 const salvar = async (produto: Produto) => {
-    return await axios.post("http://localhost:8085", produto)
+    return await axios.post(`${API}`, produto)
 }
 
 const deletar = async (id: number) => {
-    return await axios.delete(`http://localhost:8085?id=${id}`)
+    return await axios.delete(`${API}?id=${id}`)
 }
 
 const gerarRelatorio = async () => {
-    return await axios.get("http://localhost:8085/relatorio", { responseType: 'blob' })
+    return await axios.get(`${API}/relatorio`, { responseType: 'blob' })
 }
 
 
