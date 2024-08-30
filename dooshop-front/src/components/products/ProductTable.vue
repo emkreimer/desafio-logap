@@ -3,11 +3,12 @@ import { Produto } from '../../models/Produto'
 import DeleteProduct from './DeleteProduct.vue'
 import AddProduct from './AddProduct.vue'
 import { loading } from '../../services/produtoService'
-defineProps<{ produtos: Produto[]; dialog: boolean }>()
+
+const props = defineProps<{ produtos: Produto[]; dialog: boolean }>()
 </script>
 <template>
-  <div class="d-flex justify-center">
-    <VTable fixed-header class="rounded" :class="dialog ? 'w-50' : 'w-100'">
+  <div class="w-100">
+    <VTable fixed-header class="rounded">
       <VOverlay v-model="loading" class="d-flex align-center justify-center">
         <VProgressCircular indeterminate />
       </VOverlay>

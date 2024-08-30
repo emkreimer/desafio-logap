@@ -12,7 +12,7 @@ const salvar = async (produto: Produto) => {
 }
 
 const deletar = async (id: number) => {
-    return await axios.delete(`${API}?id=${id}`)
+    return await axios.delete(`${API}/del?id=${id}`)
 }
 
 const gerarRelatorio = async () => {

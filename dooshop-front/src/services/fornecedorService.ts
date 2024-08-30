@@ -9,14 +9,11 @@ const estoqueTotal = ref<Record<number, number>>({})
 
 const fetchFornecedores = async () => {
     const res = await getFornecedores()
-    
-
-    // for (const empresa of res.data.value) {
-    //     const stock = await getEstoqueTotalFornecedor(empresa.id);
-    //     estoqueTotal.value[empresa.id] = stock;
-    // }  
-    
     return res.data
+}
+
+const getEstoqueFornecedor = async (id: number) => {
+    return await getEstoqueTotalFornecedor(id);
 }
 
 const fetchProdutosFornecedor = async (id: number) => {
@@ -24,5 +21,13 @@ const fetchProdutosFornecedor = async (id: number) => {
     return produtos.data ?? []
 }
 
+const sumEstoque = (empresa: Empresa) => {
+    let sum = 0
+    empresa.produtos.forEach((p) => {
+        sum += p.estoque
+    })
+    return sum
+}
 
-export { fetchFornecedores, estoqueTotal, empresas, fetchProdutosFornecedor, loading }
+
+export { fetchFornecedores, estoqueTotal, empresas, fetchProdutosFornecedor, getEstoqueFornecedor, sumEstoque, loading }

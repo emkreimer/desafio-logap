@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Empresa } from '../../models/Empresa'
-import { estoqueTotal, loading } from '@/services/fornecedorService'
+import { loading, sumEstoque } from '@/services/fornecedorService'
 import SupplierProducts from './SupplierProducts.vue'
 
 defineProps<{ empresas: Empresa[] }>()
@@ -23,7 +23,7 @@ defineProps<{ empresas: Empresa[] }>()
         <tr v-for="e in empresas" :key="e.id">
           <td>{{ e.nome }}</td>
           <td>{{ e.produtos.length }}</td>
-          <td>teste</td>
+          <td>{{ sumEstoque(e) }}</td>
           <td>
             <SupplierProducts :id="Number(e.id)" />
           </td>
