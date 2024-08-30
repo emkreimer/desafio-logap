@@ -7,4 +7,8 @@ const getFornecedores = async () => {
     return await axios.get(`${API}/fornecedores`)
 }
 
-export { getFornecedores }
+const getProdutoFornecedores = async (id: number) => {
+    return await axios.get(`${API}/fornecedores/${id}`)
+}
+
+export { getFornecedores, getProdutoFornecedores }

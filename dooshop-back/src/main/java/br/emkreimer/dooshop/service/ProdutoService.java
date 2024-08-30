@@ -35,6 +35,10 @@ public class ProdutoService {
 
     public List<Produto> getProdutosFaltantes() { return produtoRepository.getProdutosFaltantes(); }
 
+    public List<Produto> getProdutosByFornecedor(Integer id) {
+        return produtoRepository.getProdutosByFornecedor(id);
+    }
+
     public List<Object[]> getCategoriaWithCounts() {
         return produtoRepository.countProductsByCategoria();
     }

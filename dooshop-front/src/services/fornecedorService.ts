@@ -1,4 +1,4 @@
-import { getFornecedores } from "@/api/fornecedor";
+import { getFornecedores, getProdutoFornecedores } from "@/api/fornecedor";
 import type { Empresa } from "@/models/Empresa";
 
 const fetchFornecedores = async () => {
@@ -6,8 +6,13 @@ const fetchFornecedores = async () => {
     return fornecedores.data ?? []
 }
 
+const fetchProdutosFornecedor = async (id: number) => {
+    const produtos = await getProdutoFornecedores(id)
+    return produtos.data ?? []
+}
+
 const sumEstoque = (empresa: Empresa) => {
     return empresa.produtos.reduce((total, produto) => total + produto.estoque, 0)
 }
 
-export { fetchFornecedores, sumEstoque  }
+export { fetchFornecedores, sumEstoque, fetchProdutosFornecedor }
