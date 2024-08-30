@@ -14,13 +14,14 @@ defineProps<{ empresas: Empresa[] }>()
           <th>Total em estoque</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody v-if="empresas.length > 0">
         <tr v-for="e in empresas" :key="e.id">
           <td>{{ e.nome }}</td>
           <td>{{ e.produtos.length }}</td>
           <td>{{ sumEstoque(e) }}</td>
         </tr>
       </tbody>
+      <VCard v-else class="py-5 ml-3"> Parece que não há parceiros disponíveis... </VCard>
     </VTable>
   </div>
 </template>

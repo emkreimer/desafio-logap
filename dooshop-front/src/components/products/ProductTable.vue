@@ -29,11 +29,7 @@ defineProps<{ produtos: Produto[] }>()
           </td>
         </tr>
       </tbody>
-      <tbody v-else>
-        <tr>
-          Não há produtos disponíveis por enquanto.
-        </tr>
-      </tbody>
+      <VCard v-else class="py-5 ml-3"> Não há produtos disponíveis por enquanto. </VCard>
     </VTable>
   </div>
 </template>

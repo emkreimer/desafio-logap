@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 <template>
-  <VCard color="red" class="pt-4 px-3">
-    <VToolbar color="red" class="d-flex">
+  <VCard color="light-green-darken-3" class="pt-4 px-3">
+    <VToolbar color="light-green-darken-3" class="d-flex">
       <v-toolbar-title class="text-h4">Doo Shop</v-toolbar-title>
       <VSpacer />
     </VToolbar>
