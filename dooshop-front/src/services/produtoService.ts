@@ -3,6 +3,7 @@ import { Categoria } from "@/enums/Categoria";
 import { ref} from 'vue'
 import type { Produto } from "@/models/Produto";
 
+const loading = ref(false)
 const allProdutos = ref<Produto[]>([])
 const novoProduto= ref<Produto>({
     id: undefined,
@@ -49,4 +50,4 @@ const categoriaOptions = Object.keys(Categoria).map(key => ({
 
 
 
-export {getProdutos, categoriaOptions, novoProduto, salvarProduto, allProdutos, deletarProduto, imprimirRelatorio }
+export {getProdutos, loading, categoriaOptions, novoProduto, salvarProduto, allProdutos, deletarProduto, imprimirRelatorio }

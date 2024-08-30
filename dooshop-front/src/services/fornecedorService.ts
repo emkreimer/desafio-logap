@@ -2,18 +2,21 @@ import { getFornecedores, getProdutoFornecedores, getEstoqueTotalFornecedor } fr
 import { ref } from 'vue'
 import type {Empresa} from '../models/Empresa'
 
+const loading = ref(false)
 const empresas = ref<Empresa[]>([])
 const estoqueTotal = ref<Record<number, number>>({})
 
 
 const fetchFornecedores = async () => {
     const res = await getFornecedores()
-    const empresas = res.data
+    
 
-    for (const empresa of empresas.value) {
-        const stock = await getEstoqueTotalFornecedor(empresa.id);
-        estoqueTotal.value[empresa.id] = stock;
-    }   
+    // for (const empresa of res.data.value) {
+    //     const stock = await getEstoqueTotalFornecedor(empresa.id);
+    //     estoqueTotal.value[empresa.id] = stock;
+    // }  
+    
+    return res.data
 }
 
 const fetchProdutosFornecedor = async (id: number) => {
@@ -22,4 +25,4 @@ const fetchProdutosFornecedor = async (id: number) => {
 }
 
 
-export { fetchFornecedores, estoqueTotal, empresas, fetchProdutosFornecedor }
+export { fetchFornecedores, estoqueTotal, empresas, fetchProdutosFornecedor, loading }

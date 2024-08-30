@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 import SupplierTable from '../../components/suppliers/SupplierTable.vue'
-import { fetchFornecedores, empresas } from '../../services/fornecedorService'
+import { fetchFornecedores, empresas, loading } from '../../services/fornecedorService'
 import Header from '../../components/suppliers/Header.vue'
 import type { Empresa } from '../../models/Empresa'
 
 onMounted(async () => {
-  await fetchFornecedores()
+  loading.value = true
+  empresas.value = await fetchFornecedores()
+  loading.value = false
 })
 </script>
 <template>

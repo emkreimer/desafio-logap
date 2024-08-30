@@ -44,7 +44,7 @@ public class ProdutoController {
         return produtoService.getCategoriaWithCounts();
     }
 
-    @DeleteMapping()
+    @DeleteMapping("/del")
     public ResponseEntity<String> deleteProduto(@RequestParam Integer id) {
         return new ResponseEntity<>(produtoService.deleteProdutoById(id), HttpStatus.OK);
     }

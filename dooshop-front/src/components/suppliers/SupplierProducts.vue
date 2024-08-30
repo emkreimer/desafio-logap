@@ -19,7 +19,7 @@ const showDialog = async () => {
     >...</VBtn
   >
 
-  <VDialog v-model="dialog">
-    <ProductTable :produtos="produtos" />
+  <VDialog v-model="dialog" @click="dialog = false">
+    <ProductTable :produtos="produtos" :dialog="true" />
   </VDialog>
 </template>

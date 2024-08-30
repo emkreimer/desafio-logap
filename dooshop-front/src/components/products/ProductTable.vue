@@ -2,12 +2,15 @@
 import { Produto } from '../../models/Produto'
 import DeleteProduct from './DeleteProduct.vue'
 import AddProduct from './AddProduct.vue'
-
-defineProps<{ produtos: Produto[] }>()
+import { loading } from '../../services/produtoService'
+defineProps<{ produtos: Produto[]; dialog: boolean }>()
 </script>
 <template>
-  <div class="w-100">
-    <VTable fixed-header class="rounded">
+  <div class="d-flex justify-center">
+    <VTable fixed-header class="rounded" :class="dialog ? 'w-50' : 'w-100'">
+      <VOverlay v-model="loading" class="d-flex align-center justify-center">
+        <VProgressCircular indeterminate />
+      </VOverlay>
       <thead>
         <tr>
           <th>Nome</th>
@@ -17,6 +20,7 @@ defineProps<{ produtos: Produto[] }>()
           <th>Ações</th>
         </tr>
       </thead>
+
       <tbody v-if="produtos.length > 0">
         <tr v-for="p in produtos" :key="p.id">
           <td>{{ p.nome }}</td>
