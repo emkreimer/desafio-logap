@@ -39,7 +39,9 @@ public class EmpresaService {
     @Transactional
     public Iterable<Empresa> updateProdutosEmpresa(Produto produto) {
         for (Empresa e : produto.getFornecedores()) {
-            e.getProdutos().add(produto);
+            if (!e.getProdutos().contains(produto)) {
+                e.getProdutos().add(produto);
+            }
         }
         return empresaRepository.saveAll(produto.getFornecedores());
     }

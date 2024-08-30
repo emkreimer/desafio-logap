@@ -51,6 +51,6 @@ public class CaractereService {
 
             }
         }
-        return '\0';
+        return null;
     }
 }

@@ -36,10 +36,11 @@ const showAnswer = async () => {
             >
             </VTextField>
             <div v-show="show">
-              <p>
+              <p v-if="res.vogal">
                 A vogal encontrada foi a letra <span class="text-green">{{ res.vogal }}</span
                 >!
               </p>
+              <p v-else>Essa vogal não existe...que pena!</p>
             </div>
           </VCardText>
         </VCard>
