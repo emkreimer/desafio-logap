@@ -13,7 +13,7 @@ const fetchFornecedores = async () => {
         estoqueTotal.value[empresa.id] = stock;
     }   
 
-    return fornecedores
+    return fornecedores.value
 }
 
 const fetchProdutosFornecedor = async (id: number) => {
