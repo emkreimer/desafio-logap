@@ -25,6 +25,6 @@ COPY --from=backend-builder /dooshop-back/target/*.jar /app/app.jar
 
 COPY --from=frontend-builder /dooshop-front/dist /app/static
 
-EXPOSE 8083
+EXPOSE 8085
 
 ENTRYPOINT ["java", "-jar", "/app/app.jar"]
