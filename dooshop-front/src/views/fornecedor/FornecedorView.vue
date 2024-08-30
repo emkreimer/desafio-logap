@@ -3,7 +3,7 @@ import { ref, onMounted } from 'vue'
 import SupplierTable from '../../components/suppliers/SupplierTable.vue'
 import { fetchFornecedores } from '../../services/fornecedorService'
 import Header from '../../components/suppliers/Header.vue'
-import type Empresa from '../../models/Empresa'
+import type { Empresa } from '../../models/Empresa'
 
 const empresas = ref<Empresa[]>([])
 onMounted(async () => {

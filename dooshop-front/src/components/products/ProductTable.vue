@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Produto from '../../models/Produto'
+import { Produto } from '../../models/Produto'
 import DeleteProduct from './DeleteProduct.vue'
 import AddProduct from './AddProduct.vue'
 

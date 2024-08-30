@@ -1,8 +1,9 @@
 import { Categoria } from "@/enums/Categoria";
 export class Produto {
-    id?: number;
-    nome: string;
-    estoque: number;
-    categoria: Categoria;
+    id: number | undefined  = undefined;
+    nome: string = '';
+    estoque: number = 0;
+    valor: number = 0;
+    categoria: Categoria = Categoria.CEREAIS;
     
 }

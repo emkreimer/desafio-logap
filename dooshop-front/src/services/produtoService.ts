@@ -5,8 +5,10 @@ import type { Produto } from "@/models/Produto";
 
 const allProdutos = ref<Produto[]>([])
 const novoProduto= ref<Produto>({
+    id: undefined,
     nome: '',
     estoque: 0,
+    valor: 0,
     categoria: Categoria.CEREAIS
 })
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type Empresa from '../../models/Empresa'
+import type { Empresa } from '../../models/Empresa'
 import { sumEstoque } from '@/services/fornecedorService'
 
 defineProps<{ empresas: Empresa[] }>()

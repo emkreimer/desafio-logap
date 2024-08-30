@@ -4,7 +4,9 @@ import { ref } from 'vue'
 
 const texto = ref('')
 const show = ref(false)
-const res = ref({})
+const res = ref({
+  vogal: ''
+})
 
 const showAnswer = async () => {
   res.value = await getVowel(texto.value)

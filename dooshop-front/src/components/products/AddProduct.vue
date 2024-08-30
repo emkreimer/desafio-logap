@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import type Produto from '../../models/Produto'
-import Categoria from '../../enums/Categoria'
+import type { Produto } from '../../models/Produto'
+import { Categoria } from '../../enums/Categoria'
 import { categoriaOptions, salvarProduto } from '../../services/produtoService'
 
 const props = defineProps<{ produto: Produto; edicao: boolean }>()

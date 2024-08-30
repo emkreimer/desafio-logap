@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { deletarProduto } from '@/services/produtoService'
-import Produto from '../../models/Produto'
+import { Produto } from '../../models/Produto'
 
 const dialog = ref(false)
 defineProps<{ produto: Produto }>()
@@ -10,7 +10,7 @@ defineProps<{ produto: Produto }>()
 <template>
   <VBtn variant="outlined" color="red" size="small" @click="dialog = true" rounded="lg">-</VBtn>
 
-  <VDialog v-model="dialog" width="auto">
+  <VDialog v-model="dialog" width="auto" v-if="produto.id">
     <VCard>
       <VCardTitle class="my-3">Tem certeza de que deseja deletar {{ produto.nome }}?</VCardTitle>
       <VCardText>
