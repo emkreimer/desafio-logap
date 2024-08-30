@@ -46,6 +46,10 @@ public class EmpresaService {
         return empresaRepository.saveAll(produto.getFornecedores());
     }
 
+    public Integer getEstoqueByFornecedor(Integer id) {
+        return empresaRepository.getEstoqueByFornecedor(id);
+    }
+
     public void validarEmpresa(Empresa empresa) {
         if (empresa.getNome() == null || empresa.getNome().isEmpty()) {
             throw new IllegalArgumentException("O nome da empresa deve ser preenchido!");

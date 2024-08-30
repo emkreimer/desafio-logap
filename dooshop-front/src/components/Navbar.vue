@@ -2,7 +2,7 @@
 <template>
   <VCard color="light-green-darken-3" class="pt-4 px-3">
     <VToolbar color="light-green-darken-3" class="d-flex">
-      <v-toolbar-title class="text-h4">Doo Shop</v-toolbar-title>
+      <v-toolbar-title class="text-h4 font-thin">Doo Shop</v-toolbar-title>
       <VSpacer />
     </VToolbar>
     <div>

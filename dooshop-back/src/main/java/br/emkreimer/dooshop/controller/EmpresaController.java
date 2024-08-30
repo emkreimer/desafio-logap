@@ -32,6 +32,11 @@ public class EmpresaController {
         return produtoService.getProdutosByFornecedor(id);
     }
 
+    @GetMapping("/estoque/{id}")
+    public Integer getEstoqueByFornecedor(@PathVariable Integer id) {
+        return empresaService.getEstoqueByFornecedor(id);
+    }
+
     @GetMapping()
     public List<Empresa> getEmpresas() {
         return empresaService.getAllFornecedores();

@@ -15,4 +15,7 @@ public interface EmpresaRepository extends CrudRepository<Empresa, Integer> {
 
     @Query("SELECT e FROM Empresa e JOIN e.produtos p WHERE p.estoque = 0")
     public List<Empresa> getAllSemEstoque();
+
+    @Query("SELECT SUM(p.estoque) FROM Produto p JOIN p.fornecedores f WHERE f.id = ?1")
+    public Integer getEstoqueByFornecedor(Integer id);
 }

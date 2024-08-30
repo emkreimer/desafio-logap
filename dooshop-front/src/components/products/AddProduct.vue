@@ -25,7 +25,7 @@ const dialog = ref(false)
   <VDialog v-model="dialog" width="auto">
     <VCard>
       <VCardTitle>{{
-        edicao ? 'Editar' + props.produto.nome : 'Cadastrar novo produto'
+        edicao ? 'Editar ' + props.produto.nome : 'Cadastrar novo produto'
       }}</VCardTitle>
       <VCardText>
         <VTextField label="Nome" v-model="props.produto.nome"></VTextField>
