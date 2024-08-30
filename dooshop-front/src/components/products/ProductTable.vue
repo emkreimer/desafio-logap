@@ -17,7 +17,7 @@ defineProps<{ produtos: Produto[] }>()
           <th>Ações</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody v-if="produtos.length > 0">
         <tr v-for="p in produtos" :key="p.id">
           <td>{{ p.nome }}</td>
           <td>{{ p.valor ? 'R$ ' + p.valor : '-' }}</td>
@@ -27,6 +27,11 @@ defineProps<{ produtos: Produto[] }>()
             <AddProduct :produto="p" :edicao="true" />
             <DeleteProduct :produto="p" />
           </td>
+        </tr>
+      </tbody>
+      <tbody v-else>
+        <tr>
+          Não há produtos disponíveis por enquanto.
         </tr>
       </tbody>
     </VTable>
