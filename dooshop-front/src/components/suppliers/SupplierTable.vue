@@ -4,6 +4,10 @@ import { sumEstoque } from '@/services/fornecedorService'
 import SupplierProducts from './SupplierProducts.vue'
 
 defineProps<{ empresas: Empresa[] }>()
+
+const estoque = async (id: number) => {
+  return await sumEstoque(Number(id))
+}
 </script>
 <template>
   <div class="w-100">
@@ -20,7 +24,7 @@ defineProps<{ empresas: Empresa[] }>()
         <tr v-for="e in empresas" :key="e.id">
           <td>{{ e.nome }}</td>
           <td>{{ e.produtos.length }}</td>
-          <td>{{ sumEstoque(Number(e.id)) }}</td>
+          <td>{{ estoque(Number(e.id)) }}</td>
           <td>
             <SupplierProducts :id="Number(e.id)" />
           </td>
