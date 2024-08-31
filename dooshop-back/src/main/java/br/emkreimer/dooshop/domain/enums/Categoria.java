@@ -7,7 +7,10 @@ public enum Categoria {
 
     FRUTAS(1, "fruta"),
     CEREAIS(2, "cereais"),
-    LEGUMES(3, "legume");
+    LEGUMES(3, "legume"),
+    DOCES(4, "doce"),
+    BEBIDAS(5, "bebida"),
+    CARNES(6, "carne");
 
     @Getter
     private final int id;
