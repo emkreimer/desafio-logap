@@ -22,7 +22,7 @@ public class Produto {
     private String nome;
 
     private BigDecimal valor;
-
+    
     private Categoria categoria;
 
     private Integer estoque = 0;
