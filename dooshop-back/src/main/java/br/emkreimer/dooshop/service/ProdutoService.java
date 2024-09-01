@@ -7,6 +7,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 @Service
@@ -20,9 +21,9 @@ public class ProdutoService {
 
     @Transactional
     public Produto cadastrar(Produto produto) {
-        Produto novo = validarProduto(produto);
+        Produto novo = produtoExiste(produto);
 
-        produtoRepository.save(novo);
+        produtoRepository.save(validarProduto(novo));
         if (!novo.getFornecedores().isEmpty()) {
             empresaService.updateProdutosEmpresa(produto);
         }
@@ -56,14 +57,26 @@ public class ProdutoService {
         return "Produto não encontrado.";
     }
 
-    private Produto validarProduto(Produto produto) {
+    private Produto produtoExiste(Produto produto) {
         if(produto.getId() != null) {
             List<Empresa> fornecedores = produtoRepository.findById(produto.getId()).get().getFornecedores();
             produto.setFornecedores(fornecedores);
         } else {
             produto.setFornecedores(new ArrayList<>());
         }
-
         return produto;
+    }
+
+    private Produto validarProduto(Produto produto) {
+        if (produto.getNome() == null || produto.getNome().isEmpty()) {
+            throw new IllegalArgumentException("O nome do produto deve ser preenchido!");
+        }
+        if (produto.getValor() == null || produto.getValor().compareTo(BigDecimal.ZERO) <= 0) {
+            throw new IllegalArgumentException("O valor do produto deve ser preenchido e maior que zero!");
+        }
+        if (produto.getCategoria() == null) {
+            throw new IllegalArgumentException("A categoria do produto deve ser preenchida!");
+        }
+        return produtoExiste(produto);
     }
 }
