@@ -18,7 +18,7 @@ const props = defineProps<{ produtos: Produto[]; dialog: boolean }>()
           <th>Preço</th>
           <th>Estoque</th>
           <th>Categoria</th>
-          <th>Ações</th>
+          <th v-if="!dialog">Ações</th>
         </tr>
       </thead>
 
@@ -28,7 +28,7 @@ const props = defineProps<{ produtos: Produto[]; dialog: boolean }>()
           <td>{{ p.valor ? 'R$ ' + p.valor : '-' }}</td>
           <td>{{ p.estoque }}</td>
           <td>{{ p.categoria.charAt(0) + p.categoria.substring(1).toLowerCase() }}</td>
-          <td>
+          <td v-if="!dialog">
             <AddProduct :produto="p" :edicao="true" />
             <DeleteProduct :produto="p" />
           </td>

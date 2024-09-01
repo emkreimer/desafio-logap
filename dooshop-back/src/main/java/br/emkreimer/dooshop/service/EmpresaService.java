@@ -26,11 +26,14 @@ public class EmpresaService {
 
         validarEmpresa(empresa);
 
+        List<Produto> produtos = empresa.getProdutos();
         for (Produto produto : empresa.getProdutos()) {
             Optional<Produto> p = produtoRepository.findById(produto.getId());
             if (p.isPresent()) {
                 p.get().getFornecedores().add(empresa);
                 produtoRepository.save(p.get());
+
+                produtos.add(p.get());
             }
         }
         return empresaRepository.save(empresa);

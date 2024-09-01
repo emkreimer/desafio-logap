@@ -42,7 +42,7 @@ public class CaractereService {
                     // if it is preceded by 2 letters
                     // and i-1 is a consonant
                     // and i-2 is a vowel
-                    if (i > 2 && consonant && vowelSet.contains(word.charAt(i-2))) {
+                    if (i >= 2 && consonant && vowelSet.contains(word.charAt(i-2))) {
                         return c;
                     }
                     vowelSet.add(c);
