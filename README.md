@@ -1,3 +1,5 @@
+** O back-end está hospedado no Render. As primeiras requisições após um período de inatividade podem demorar. **
+
 
 ![image](https://github.com/user-attachments/assets/84d8947d-3ae3-45e7-96c6-7e417c421206)
 ATENÇÃO!! Para enviar a string é necessário apertar ENTER.
