@@ -1,3 +1,5 @@
+*** A hospedagem do banco de dados vai expirar em breve e o site ficará indisponível ***
+
 ** O back-end está hospedado no Render. As primeiras requisições após um período de inatividade podem demorar. **
 
 
